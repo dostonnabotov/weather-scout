@@ -1,0 +1,26 @@
+{
+  "name": "weather-scout",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/dostonnabotov/weather-scout.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/dostonnabotov/weather-scout/issues"
+  },
+  "homepage": "https://github.com/dostonnabotov/weather-scout#readme",
+  "dependencies": {
+    "axios": "^1.7.7",
+    "dotenv": "^16.4.5",
+    "node-telegram-bot-api": "^0.66.0",
+    "uuid": "^10.0.0"
+  }
+}
