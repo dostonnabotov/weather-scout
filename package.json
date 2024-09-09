@@ -23,5 +23,8 @@
     "dotenv": "^16.4.5",
     "node-telegram-bot-api": "^0.66.0",
     "uuid": "^10.0.0"
+  },
+  "devDependencies": {
+    "@flydotio/dockerfile": "^0.5.8"
   }
 }
