@@ -20,7 +20,6 @@ bot.onText(/\/weather(?:\s(.+))?/, async (msg, match) => {
       : await getWeatherByIP();
 
     const message = formatWeatherMessage(weather);
-
     bot.sendMessage(chatId, message);
   } catch (error) {
     bot.sendMessage(
@@ -46,25 +45,29 @@ async function getWeatherByCity(city) {
 }
 
 async function getWeatherByIP() {
-  const geoResponse = await axios.get(
-    `https://api.ipgeolocation.io/ipgeo?apiKey=${ipGeoApiKey}`
-  );
+  try {
+    const geoResponse = await axios.get(
+      `https://api.ipgeolocation.io/ipgeo?apiKey=${ipGeoApiKey}`
+    );
 
-  const { latitude, longitude } = geoResponse.data;
+    const { latitude, longitude } = geoResponse.data;
 
-  const weatherResponse = await axios.get(
-    "https://api.openweathermap.org/data/2.5/weather",
-    {
-      params: {
-        lat: latitude,
-        lon: longitude,
-        appid: weatherApiKey,
-        units: "metric",
-      },
-    }
-  );
-
-  return weatherResponse.data;
+    const weatherResponse = await axios.get(
+      "https://api.openweathermap.org/data/2.5/weather",
+      {
+        params: {
+          lat: latitude,
+          lon: longitude,
+          appid: weatherApiKey,
+          units: "metric",
+        },
+      }
+    );
+    return weatherResponse.data;
+  } catch (error) {
+    console.error("Error getting weather by IP:", error);
+    throw new Error("Could not get weather by IP");
+  }
 }
 
 function formatWeatherMessage(weather) {
