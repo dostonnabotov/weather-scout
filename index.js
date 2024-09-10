@@ -50,14 +50,13 @@ async function getWeatherByIP() {
       `https://api.ipgeolocation.io/ipgeo?apiKey=${ipGeoApiKey}`
     );
 
-    const { latitude, longitude } = geoResponse.data;
+    const { city } = geoResponse.data;
 
     const weatherResponse = await axios.get(
       "https://api.openweathermap.org/data/2.5/weather",
       {
         params: {
-          lat: latitude,
-          lon: longitude,
+          q: city,
           appid: weatherApiKey,
           units: "metric",
         },
