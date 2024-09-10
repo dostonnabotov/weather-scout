@@ -1,2 +1,16 @@
 /node_modules
 .env
+/.DS_Store              # macOS related file
+/logs                   # Any logs or debug info
+*.log                   # Log file extension
+*.pid                   # Process ID files
+*.seed                  # Seed data files
+*.seed.txt
+/.vscode                # Local VS Code config files (if you're using VS Code)
+/.Dockerfile            # Ignore any generated Dockerfile
+/fly.toml               # Sensitive app configuration
+/.next                  # Next.js cache (if using Next.js)
+/dist                   # Distribution/build files
+/out                    # Build or export directories
+/tmp                    # Temporary files
+/.cache                 # General cache folders
