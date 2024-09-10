@@ -6,31 +6,20 @@ import axios from "axios";
 
 const token = process.env.TELEGRAM_BOT_TOKEN;
 const weatherApiKey = process.env.WEATHER_API_KEY;
+const ipGeoApiKey = process.env.IP_GEO_API_KEY;
 
 const bot = new TelegramBot(token, { polling: true });
 
-bot.onText(/\/weather (.+)/, async (msg, match) => {
+bot.onText(/\/weather(?:\s(.+))?/, async (msg, match) => {
   const chatId = msg.chat.id;
   const location = match[1];
 
   try {
-    const response = await axios.get(
-      "https://api.openweathermap.org/data/2.5/weather",
-      {
-        params: {
-          q: location,
-          appid: weatherApiKey,
-          units: "metric",
-        },
-      }
-    );
+    const weather = location
+      ? await getWeatherByCity(location)
+      : await getWeatherByIP();
 
-    const weather = response.data;
-    const message = `🌤️ Weather in ${weather.name}, ${weather.sys.country}:
-   - 🌡️ Temperature: ${weather.main.temp}°C
-   - ☁️ Condition: ${weather.weather[0].description}
-   - 💧 Humidity: ${weather.main.humidity}%
-   - 🌬️ Wind Speed: ${weather.wind.speed} m/s`;
+    const message = formatWeatherMessage(weather);
 
     bot.sendMessage(chatId, message);
   } catch (error) {
@@ -40,3 +29,48 @@ bot.onText(/\/weather (.+)/, async (msg, match) => {
     );
   }
 });
+
+async function getWeatherByCity(city) {
+  const response = await axios.get(
+    "https://api.openweathermap.org/data/2.5/weather",
+    {
+      params: {
+        q: city,
+        appid: weatherApiKey,
+        units: "metric",
+      },
+    }
+  );
+
+  return response.data;
+}
+
+async function getWeatherByIP() {
+  const geoResponse = await axios.get(
+    `https://api.ipgeolocation.io/ipgeo?apiKey=${ipGeoApiKey}`
+  );
+
+  const { latitude, longitude } = geoResponse.data;
+
+  const weatherResponse = await axios.get(
+    "https://api.openweathermap.org/data/2.5/weather",
+    {
+      params: {
+        lat: latitude,
+        lon: longitude,
+        appid: weatherApiKey,
+        units: "metric",
+      },
+    }
+  );
+
+  return weatherResponse.data;
+}
+
+function formatWeatherMessage(weather) {
+  return `🌤️ Weather in ${weather.name}, ${weather.sys.country}:
+   - 🌡️ Temperature: ${weather.main.temp}°C
+   - ☁️ Condition: ${weather.weather[0].description}
+   - 💧 Humidity: ${weather.main.humidity}%
+   - 🌬️ Wind Speed: ${weather.wind.speed} m/s`;
+}
