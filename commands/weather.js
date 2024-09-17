@@ -1,16 +1,17 @@
-import { getUserLocation } from "../utils/locationService";
-import { formatWeatherMessage } from "../utils/formatService";
-import { getWeatherByCity } from "../utils/weatherService";
+import { getUserLocation } from "../utils/locationService.js";
+import { formatWeatherMessage } from "../utils/formatService.js";
+import { getWeatherByCity } from "../utils/weatherService.js";
 
-export const weatherCommand = (bot) => {
+export const weatherCommand = (bot, weatherApiKey) => {
   bot.onText(/\/weather(?:\s(.+))?/, async (msg, match) => {
     const chatId = msg.chat.id;
-    const location = match[1];
+    const city = match[1];
+    let location;
 
     if (city) {
       location = city;
     } else {
-      location = getUserLocation(chatId); // Get the stored location
+      location = getUserLocation(chatId);
       if (!location) {
         bot.sendMessage(
           chatId,
@@ -21,7 +22,7 @@ export const weatherCommand = (bot) => {
     }
 
     try {
-      const weather = await getWeatherByCity(location);
+      const weather = await getWeatherByCity(location, weatherApiKey);
 
       const message = formatWeatherMessage(weather);
       bot.sendMessage(chatId, message);

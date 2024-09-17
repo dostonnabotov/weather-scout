@@ -1,4 +1,4 @@
-import { setUserLocation } from "../utils/locationService";
+import { setUserLocation } from "../utils/locationService.js";
 
 export const setLocationCommand = (bot) => {
   bot.onText(/\/set_location/, (msg) => {
