@@ -1,4 +1,4 @@
-# 🌤️ Weather Scout v1.1.0
+# 🌤️ Weather Scout v1.1.1
 
 Get up-to-date with the latest weather news in your city or anywhere in the world.
 
