@@ -14,3 +14,5 @@
 /out                    # Build or export directories
 /tmp                    # Temporary files
 /.cache                 # General cache folders
+
+notes.md
