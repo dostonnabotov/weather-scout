@@ -1,4 +1,4 @@
-# 🌤️ Weather Scout v1.1.1
+# 🌤️ Weather Scout v1.2.1
 
 Get up-to-date with the latest weather news in your city or anywhere in the world.
 
@@ -10,14 +10,14 @@ These ideas are generated with the help of ChatGPT. I will consider which ones t
 
 If you want any of these features to be in the bot, let me know!
 
+- [x] /start - Start interacting with the bot and receive a welcome message.
+- [x] /about - Learn more about this bot and its features.
+- [x] /help - Get a list of available commands and their descriptions.
 - [x] /weather [city] - Get the current weather for a specific city.
 - [x] /set_location - Set your default location for quick weather updates.
-- [x] /help - Get a list of available commands and their descriptions.
-- [x] /about - Learn more about this bot and its features.
 - [ ] /forecast - Get the weather forecast for your saved location.
 - [ ] /current_weather - Get the current weather for your saved location.
 - [ ] /set_units [metric/imperial] - Set the temperature units to either metric or imperial.
-- [ ] /start - Start interacting with the bot and receive a welcome message.
 - [ ] /set_alert [condition] - Get notified when certain weather conditions (e.g., rain, storm, snow) are expected in your saved location.
 - [ ] /remove_location - Remove your saved default location.
 - [ ] /compare_weather [city1] [city2] - Compare the weather between two cities.
