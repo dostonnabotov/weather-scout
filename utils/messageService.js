@@ -1,28 +1,37 @@
+import config from "../config";
+
+const generateCommands = () => {
+  let commands = "";
+
+  Object.keys(config.commands).forEach((commandKey) => {
+    commands += `  - ${config.commands[commandKey]}\n`;
+  });
+
+  return commands;
+};
+
 const startMessage = `
-🌤️ Weather Scout v1.2
+🌤️ ${config.botName} ${config.botVersion_short}
 
 Welcome! Get up-to-date with the latest weather news in your city or anywhere in the world.
 
-- Developed and maintained by Technophile
+- Developed and maintained by ${config.author}
 - Use /help to see available commands.
 `;
 
 const aboutMessage = `
-🌤️ Weather Scout v1.2
+🌤️ ${config.botName} ${config.botVersion_short}
 
 Get up-to-date with the latest weather news in your city or anywhere in the world.
 
-- Developed and maintained by Technophile
-- Contribute on GitHub: https://github.com/dostonnabotov/weather-scout
+- Developed and maintained by ${config.author}
+- Contribute on GitHub: ${config.githubUrl}
 - Use /help to see available commands.
 `;
 
 const helpMessage = `
 Here are the available commands:
-  - /about - Learn more about this bot and its features.
-  - /help - Get a list of available commands and their descriptions.
-  - /weather [city] - Get the current weather.
-  - /set_location - Set your default location.
+${generateCommands}
 `;
 
 const weatherMessage = (weather) => {

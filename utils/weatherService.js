@@ -1,16 +1,14 @@
 import axios from "axios";
+import config from "../config";
 
-const getWeatherByCity = async (city, weatherApiKey) => {
-  const response = await axios.get(
-    "https://api.openweathermap.org/data/2.5/weather",
-    {
-      params: {
-        q: city,
-        appid: weatherApiKey,
-        units: "metric",
-      },
-    }
-  );
+const getWeatherByCity = async (city) => {
+  const response = await axios.get(config.secrets.weather.api, {
+    params: {
+      q: city,
+      appid: config.secrets.weather.key,
+      units: config.defaultUnits,
+    },
+  });
   return response.data;
 };
 
