@@ -1,8 +1,8 @@
-import { getUserLocation } from "../utils/locationService.js";
+import { getUserLocation, getUserUnits } from "../utils/userService.js";
 import { getWeatherByCity } from "../utils/weatherService.js";
 import { weatherMessage } from "../utils/messageService.js";
 
-export const weatherCommand = (bot, weatherApiKey) => {
+export const weatherCommand = (bot) => {
   bot.onText(/\/weather(?:\s(.+))?/, async (msg, match) => {
     const chatId = msg.chat.id;
     const city = match[1];
@@ -22,9 +22,10 @@ export const weatherCommand = (bot, weatherApiKey) => {
     }
 
     try {
-      const weather = await getWeatherByCity(location, weatherApiKey);
+      let units = getUserUnits(chatId);
+      const weather = await getWeatherByCity(location, units);
 
-      const message = weatherMessage(weather);
+      const message = weatherMessage(weather, units);
       bot.sendMessage(chatId, message);
     } catch (error) {
       bot.sendMessage(

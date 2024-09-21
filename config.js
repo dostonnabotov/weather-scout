@@ -24,7 +24,7 @@ const config = {
     about: "/about - Information about this bot.",
     help: "/help - Show this help message.",
     weather: "/weather [city] - Get the current weather.",
-    forecast: "/forecast - Get the weather forecast.", // in the future
+    // forecast: "/forecast - Get the weather forecast.", // in the future
     setLocation: "/set_location - Set your default location.",
     setUnits: "/set_units [metric/imperial] - Set temperature units.", // in the future
   },

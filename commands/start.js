@@ -1,4 +1,4 @@
-import { startMessage } from "../utils/messageService";
+import { startMessage } from "../utils/messageService.js";
 
 export const startCommand = (bot) => {
   bot.onText(/\/start/, (msg) => {

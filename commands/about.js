@@ -1,4 +1,4 @@
-import { aboutMessage } from "../utils/messageService";
+import { aboutMessage } from "../utils/messageService.js";
 
 export const aboutCommand = (bot) => {
   bot.onText(/\/about/, (msg) => {

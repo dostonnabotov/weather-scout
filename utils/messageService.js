@@ -1,4 +1,4 @@
-import config from "../config";
+import config from "../config.js";
 
 const generateCommands = () => {
   let commands = "";
@@ -34,9 +34,11 @@ Here are the available commands:
 ${generateCommands}
 `;
 
-const weatherMessage = (weather) => {
+const weatherMessage = (weather, units) => {
+  let temp = units === "metric" ? "°C" : "°F";
+
   return `🌤️ Weather in ${weather.name}, ${weather.sys.country}:
-  - 🌡️ Temperature: ${weather.main.temp}°C
+  - 🌡️ Temperature: ${weather.main.temp} ${temp}
   - ☁️ Condition: ${weather.weather[0].description}
   - 💧 Humidity: ${weather.main.humidity}%
   - 🌬️ Wind Speed: ${weather.wind.speed} m/s`;
