@@ -31,7 +31,7 @@ Get up-to-date with the latest weather news in your city or anywhere in the worl
 
 const helpMessage = `
 Here are the available commands:
-${generateCommands}
+${generateCommands()}
 `;
 
 const weatherMessage = (weather, units) => {

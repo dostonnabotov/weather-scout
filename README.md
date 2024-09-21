@@ -15,9 +15,9 @@ If you want any of these features to be in the bot, let me know!
 - [x] /help - Get a list of available commands and their descriptions.
 - [x] /weather [city] - Get the current weather for a specific city.
 - [x] /set_location - Set your default location for quick weather updates.
+- [x] /set_units [metric/imperial] - Set the temperature units to either metric or imperial.
 - [ ] /forecast - Get the weather forecast for your saved location.
 - [ ] /current_weather - Get the current weather for your saved location.
-- [ ] /set_units [metric/imperial] - Set the temperature units to either metric or imperial.
 - [ ] /set_alert [condition] - Get notified when certain weather conditions (e.g., rain, storm, snow) are expected in your saved location.
 - [ ] /remove_location - Remove your saved default location.
 - [ ] /compare_weather [city1] [city2] - Compare the weather between two cities.
