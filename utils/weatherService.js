@@ -5,11 +5,42 @@ const getWeatherByCity = async (city, units) => {
   const response = await axios.get(config.secrets.weather.api, {
     params: {
       q: city,
-      appid: config.secrets.weather.key,
       units: units,
+      appid: config.secrets.weather.key,
     },
   });
+
   return response.data;
 };
 
-export { getWeatherByCity };
+const getForecastByCity = async (city, units) => {
+  const { lat, lon } = await getCoordinatesByCity(city);
+
+  const response = await axios.get(config.secrets.forecast.api, {
+    params: {
+      lat: lat,
+      lon: lon,
+      units: units,
+      // cnt: 1,
+      appid: config.secrets.forecast.key,
+    },
+  });
+
+  return response.data;
+};
+
+const getCoordinatesByCity = async (city) => {
+  const response = await axios.get(config.secrets.weather.api, {
+    params: {
+      q: city,
+      limit: 1,
+      appid: config.secrets.weather.key,
+    },
+  });
+
+  const { coord } = response.data;
+
+  return coord;
+};
+
+export { getWeatherByCity, getForecastByCity };

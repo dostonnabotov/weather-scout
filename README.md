@@ -1,4 +1,4 @@
-# 🌤️ Weather Scout v1.3
+# 🌤️ Weather Scout v1.4
 
 Get up-to-date with the latest weather news in your city or anywhere in the world.
 
@@ -16,7 +16,7 @@ If you want any of these features to be in the bot, let me know!
 - [x] /weather [city] - Get the current weather for a specific city.
 - [x] /set_location - Set your default location for quick weather updates.
 - [x] /set_units [metric/imperial] - Set the temperature units to either metric or imperial.
-- [ ] /forecast - Get the weather forecast for your saved location.
+- [x] /forecast - Get the weather forecast for your saved location.
 - [ ] /current_weather - Get the current weather for your saved location.
 - [ ] /set_alert [condition] - Get notified when certain weather conditions (e.g., rain, storm, snow) are expected in your saved location.
 - [ ] /remove_location - Remove your saved default location.

@@ -3,8 +3,8 @@ dotenv.config();
 
 const config = {
   botName: "Weather Scout",
-  botVersion: "v1.3.1",
-  botVersion_short: "v1.3",
+  botVersion: "v1.4.0",
+  botVersion_short: "v1.4",
   author: "Technophile",
   githubUrl: "https://github.com/dostonnabotov/weather-scout",
 
@@ -24,7 +24,7 @@ const config = {
     about: "/about - Information about this bot.",
     help: "/help - Show this help message.",
     weather: "/weather [city] - Get the current weather.",
-    // forecast: "/forecast - Get the weather forecast.", // in the future
+    forecast: "/forecast - Get the weather forecast.",
     setLocation: "/set_location - Set your default location.",
     setUnits: "/set_units [metric/imperial] - Set temperature units.", // in the future
   },
@@ -34,6 +34,10 @@ const config = {
     telegramBotToken: process.env.TELEGRAM_BOT_TOKEN,
     weather: {
       api: "https://api.openweathermap.org/data/2.5/weather",
+      key: process.env.WEATHER_API_KEY,
+    },
+    forecast: {
+      api: "https://api.openweathermap.org/data/2.5/forecast",
       key: process.env.WEATHER_API_KEY,
     },
   },

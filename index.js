@@ -7,6 +7,7 @@ import { startCommand } from "./commands/start.js";
 import { aboutCommand } from "./commands/about.js";
 import { helpCommand } from "./commands/help.js";
 import { weatherCommand } from "./commands/weather.js";
+import { forecastCommand } from "./commands/forecast.js";
 import { setLocationCommand } from "./commands/setLocation.js";
 import { setUnitsCommands } from "./commands/setUnits.js";
 
@@ -16,5 +17,6 @@ startCommand(bot);
 aboutCommand(bot);
 helpCommand(bot);
 weatherCommand(bot);
+forecastCommand(bot);
 setLocationCommand(bot);
 setUnitsCommands(bot);
