@@ -1,4 +1,22 @@
 import config from "../config.js";
+import enMessages from "../locales/en.js";
+import uzMessages from "../locales/uz.js";
+import ruMessages from "../locales/ru.js";
+import { getTempSymbol } from "./weatherService.js";
+
+const getMessagesForUser = (language) => {
+  switch (language) {
+    case "uz":
+      return uzMessages;
+    case "ru":
+      return ruMessages;
+    case "en":
+    default:
+      return enMessages;
+  }
+};
+
+export { getMessagesForUser };
 
 const generateCommands = () => {
   let commands = "";
@@ -10,42 +28,13 @@ const generateCommands = () => {
   return commands;
 };
 
-const startMessage = `
-🌤️ ${config.botName} ${config.botVersion_short}
-
-Welcome! Get up-to-date with the latest weather news in your city or anywhere in the world.
-
-- Developed and maintained by ${config.author}
-- Use /help to see available commands.
-`;
-
-const aboutMessage = `
-🌤️ ${config.botName} ${config.botVersion_short}
-
-Get up-to-date with the latest weather news in your city or anywhere in the world.
-
-- Developed and maintained by ${config.author}
-- Contribute on GitHub: ${config.githubUrl}
-- Use /help to see available commands.
-`;
-
 const helpMessage = `
 Here are the available commands:
 ${generateCommands()}
 `;
 
-const weatherMessage = (weather, units) => {
-  let temp = units === "metric" ? "°C" : "°F";
-
-  return `🌤️ Weather in ${weather.name} ${weather.sys?.country || ""}:
-  - 🌡️ Temperature: ${weather.main.temp} ${temp}
-  - ☁️ Condition: ${weather.weather[0].description}
-  - 💧 Humidity: ${weather.main.humidity}%
-  - 🌬️ Wind Speed: ${weather.wind.speed} m/s`;
-};
-
 const forecastMessage = (forecast, units) => {
-  let temp = units === "metric" ? "°C" : "°F";
+  let tempSymbol = getTempSymbol(units);
 
   let message = `🌤️ 7-Day Weather Forecast for ${forecast.city.name} ${
     forecast.city?.country || ""
@@ -62,7 +51,7 @@ const forecastMessage = (forecast, units) => {
       addedDates.add(date);
 
       message += `\n📅 Day ${index + 1} - ${date}\n`;
-      message += `- 🌡️ Temp: ${day.main.temp}${temp} \n`;
+      message += `- 🌡️ Temp: ${day.main.temp}${tempSymbol} \n`;
       message += `- ☁️ Condition: ${day.weather[0].description}\n`;
     }
   });
@@ -70,10 +59,4 @@ const forecastMessage = (forecast, units) => {
   return message;
 };
 
-export {
-  startMessage,
-  aboutMessage,
-  helpMessage,
-  weatherMessage,
-  forecastMessage,
-};
+export { helpMessage, forecastMessage };

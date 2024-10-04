@@ -43,4 +43,8 @@ const getCoordinatesByCity = async (city) => {
   return coord;
 };
 
-export { getWeatherByCity, getForecastByCity };
+const getTempSymbol = (units) => {
+  return units === "metric" ? "°C" : "°F";
+};
+
+export { getWeatherByCity, getForecastByCity, getTempSymbol };

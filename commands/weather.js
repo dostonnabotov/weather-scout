@@ -1,5 +1,9 @@
-import { getUserLocation, getUserUnits } from "../utils/userService.js";
-import { getWeatherByCity } from "../utils/weatherService.js";
+import {
+  getUserLanguage,
+  getUserLocation,
+  getUserUnits,
+} from "../utils/userService.js";
+import { getTempSymbol, getWeatherByCity } from "../utils/weatherService.js";
 import { weatherMessage } from "../utils/messageService.js";
 
 export const weatherCommand = (bot) => {
@@ -23,9 +27,13 @@ export const weatherCommand = (bot) => {
 
     try {
       let units = getUserUnits(chatId);
-      const weather = await getWeatherByCity(location, units);
+      let language = getUserLanguage(chatId);
+      let tempSymbol = getTempSymbol(units);
 
-      const message = weatherMessage(weather, units);
+      const weather = await getWeatherByCity(location, units);
+      const messages = getMessagesForUser(language);
+      const message = messages.weatherMessage(weather, tempSymbol);
+
       bot.sendMessage(chatId, message);
     } catch (error) {
       bot.sendMessage(
