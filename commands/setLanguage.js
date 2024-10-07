@@ -1,8 +1,11 @@
-import { setUserLanguage } from "../utils/userService.js";
+import { getUserLanguage } from "../utils/userService.js";
+import { getMessagesForUser } from "../utils/messageService.js";
 
 export const setLanguageCommand = (bot) => {
   bot.onText(/\/set_language/, (msg) => {
     const chatId = msg.chat.id;
+    let language = getUserLanguage(chatId);
+    const messages = getMessagesForUser(language);
 
     const options = {
       reply_markup: {
@@ -14,30 +17,6 @@ export const setLanguageCommand = (bot) => {
       },
     };
 
-    bot.sendMessage(chatId, "Choose your language:", options);
-  });
-
-  bot.on("callback_query", (callbackQuery) => {
-    const message = callbackQuery.message;
-    const chatId = message.chat.id;
-    const data = callbackQuery.data;
-
-    switch (data) {
-      case "set_language_ru":
-        setUserLanguage(chatId, "ru");
-        bot.sendMessage(chatId, "Language updated to Russian!");
-        break;
-      case "set_language_uz":
-        setUserLanguage(chatId, "uz");
-        bot.sendMessage(chatId, "Language updated to Uzbek!");
-        break;
-      case "set_language_en":
-      default:
-        setUserLanguage(chatId, "en");
-        bot.sendMessage(chatId, "Language updated to English!");
-        break;
-    }
-
-    bot.answerCallbackQuery(callbackQuery.id);
+    bot.sendMessage(chatId, messages.language.choice, options);
   });
 };

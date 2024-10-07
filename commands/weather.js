@@ -1,15 +1,17 @@
+import { getMessagesForUser } from "../utils/messageService.js";
 import {
   getUserLanguage,
   getUserLocation,
   getUserUnits,
 } from "../utils/userService.js";
 import { getTempSymbol, getWeatherByCity } from "../utils/weatherService.js";
-import { weatherMessage } from "../utils/messageService.js";
 
 export const weatherCommand = (bot) => {
   bot.onText(/\/weather(?:\s(.+))?/, async (msg, match) => {
     const chatId = msg.chat.id;
     const city = match[1];
+    let language = getUserLanguage(chatId);
+    const messages = getMessagesForUser(language);
     let location;
 
     if (city) {
@@ -17,10 +19,7 @@ export const weatherCommand = (bot) => {
     } else {
       location = getUserLocation(chatId);
       if (!location) {
-        bot.sendMessage(
-          chatId,
-          "You haven't set a location yet. Use /set_location to set it."
-        );
+        bot.sendMessage(chatId, messages.location.not_set);
         return;
       }
     }
@@ -36,10 +35,7 @@ export const weatherCommand = (bot) => {
 
       bot.sendMessage(chatId, message);
     } catch (error) {
-      bot.sendMessage(
-        chatId,
-        "Sorry, I could not retrieve the weather. Please check the location."
-      );
+      bot.sendMessage(chatId, messages.errors.weather);
     }
   });
 };

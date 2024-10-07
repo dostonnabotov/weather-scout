@@ -11,6 +11,7 @@ import { forecastCommand } from "./commands/forecast.js";
 import { setLocationCommand } from "./commands/setLocation.js";
 import { setUnitsCommands } from "./commands/setUnits.js";
 import { setLanguageCommand } from "./commands/setLanguage.js";
+import handleCallbackQuery from "./utils/callbackHandler.js";
 
 const bot = new TelegramBot(config.secrets.telegramBotToken, { polling: true });
 
@@ -22,3 +23,12 @@ forecastCommand(bot);
 setLocationCommand(bot);
 setUnitsCommands(bot);
 setLanguageCommand(bot);
+
+bot.on("callback_query", (callbackQuery) => {
+  // const messageId = callbackQuery.message.message_id;
+  handleCallbackQuery(bot, callbackQuery);
+
+  // bot
+  //   .deleteMessage(chatId, messageId)
+  //   .catch((error) => console.log("Error deleting message:", error));
+});

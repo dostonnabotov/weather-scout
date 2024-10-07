@@ -26,7 +26,8 @@ const config = {
     weather: "/weather [city] - Get the current weather.",
     forecast: "/forecast - Get the weather forecast.",
     setLocation: "/set_location - Set your default location.",
-    setUnits: "/set_units [metric/imperial] - Set temperature units.", // in the future
+    setUnits: "/set_units [metric/imperial] - Set temperature units.",
+    setLanguage: "/set_language - Set your preferred language.",
   },
 
   // Secrets
