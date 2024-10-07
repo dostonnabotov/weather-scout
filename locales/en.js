@@ -39,7 +39,7 @@ Get up-to-date with the latest weather news in your city or anywhere in the worl
   location: {
     not_set: "You haven't set a location yet. Use /set_location to set it.",
     new: "Please enter the new location:",
-    update: "Location updated to ",
+    update: "Location updated:",
   },
   errors: {
     weather:

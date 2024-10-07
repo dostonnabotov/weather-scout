@@ -3,8 +3,8 @@ dotenv.config();
 
 const config = {
   botName: "Weather Scout",
-  botVersion: "v1.4.0",
-  botVersion_short: "v1.4",
+  botVersion: "v1.5.0",
+  botVersion_short: "v1.5",
   author: "Technophile",
   githubUrl: "https://github.com/dostonnabotov/weather-scout",
 

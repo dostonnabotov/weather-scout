@@ -1,6 +1,6 @@
 # 🌤️ Weather Scout v1.4
 
-Get up-to-date with the latest weather news in your city or anywhere in the world.
+Get up-to-date with the latest weather news in your city or anywhere in the world with this telegram bot.
 
 ![Bot preview](/public/images/bot-preview.jpg)
 
@@ -14,15 +14,16 @@ If you want any of these features to be in the bot, let me know!
 - [x] /about - Learn more about this bot and its features.
 - [x] /help - Get a list of available commands and their descriptions.
 - [x] /weather [city] - Get the current weather for a specific city.
+- [x] /forecast - Get the weather forecast for your saved location.
 - [x] /set_location - Set your default location for quick weather updates.
 - [x] /set_units [metric/imperial] - Set the temperature units to either metric or imperial.
-- [x] /forecast - Get the weather forecast for your saved location.
+- [x] /set_language [English/Russian/Uzbek] - Change the language of the bot.
+
 - [ ] /current_weather - Get the current weather for your saved location.
 - [ ] /set_alert [condition] - Get notified when certain weather conditions (e.g., rain, storm, snow) are expected in your saved location.
 - [ ] /remove_location - Remove your saved default location.
 - [ ] /compare_weather [city1] [city2] - Compare the weather between two cities.
 - [ ] /weather_map [city] - Get a weather map or radar for a specific city.
-- [ ] /set_language [language_code] - Change the language of the bot (e.g., /set_language en for English).
 - [ ] /set_timezone [timezone] - Set your preferred timezone for weather forecasts.
 - [ ] /weather_history [city] [date] - Get historical weather data for a city on a specific date.
 - [ ] /subscribe_forecast [daily/weekly] - Subscribe to receive daily or weekly weather forecasts in your chat.
