@@ -1,4 +1,4 @@
-# 🌤️ Weather Scout v1.4
+# 🌤️ Weather Scout v1.5
 
 Get up-to-date with the latest weather news in your city or anywhere in the world with this telegram bot.
 
